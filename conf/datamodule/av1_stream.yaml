@@ -1,0 +1,16 @@
+tag: av1
+
+pl_module:
+  _target_: src.datamodules.av1_datamodule.Av1DataModule
+
+  data_root: data/sharp_processed
+  train_batch_size: ${batch_size}
+  test_batch_size: ${batch_size}
+  shuffle: True
+  num_workers: 4
+  pin_memory: True
+  dataset:
+    num_historical_steps: 5
+    split_points: [5, 10, 15, 20]
+    radius: 150.0
+    num_future_steps: 45

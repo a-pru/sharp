@@ -1,0 +1,47 @@
+defaults:
+  - _self_
+  - datamodule: av2_stream
+  - model: Sharp_av2
+
+hydra:
+  run:
+    dir: ${output_dir}
+  # output_subdir: ${output_dir}/hydra
+  # job:
+  #   chdir: True
+
+seed: 2333
+tag: ${model.tag}-${datamodule.tag}
+output_dir: outputs/${tag}/${now:%Y%m%d-%H%M%S}
+
+gpus: 1
+batch_size: 32
+epochs: 60
+checkpoint:
+submit:
+
+callbacks:
+  - _target_: pytorch_lightning.callbacks.ModelCheckpoint
+    dirpath: ${output_dir}/checkpoints
+    filename: epoch_{epoch}-minADE6_{minADE6}
+    monitor: minADE6 
+    mode: min
+    save_top_k: 10
+    auto_insert_metric_name: False
+  - _target_: pytorch_lightning.callbacks.RichModelSummary
+    max_depth: 1
+  - _target_: pytorch_lightning.callbacks.RichProgressBar
+  - _target_: pytorch_lightning.callbacks.LearningRateMonitor
+    logging_interval: epoch
+  
+trainer:
+  max_epochs: ${epochs}
+  accelerator: gpu
+  devices: ${gpus}
+  strategy: ddp_find_unused_parameters_false
+  gradient_clip_val: 5
+  gradient_clip_algorithm: norm
+  sync_batchnorm: true
+  default_root_dir: ${output_dir}
+
+

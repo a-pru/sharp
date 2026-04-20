@@ -1,0 +1,17 @@
+tag: av2_ma
+
+pl_module:
+  _target_: src.datamodules.av2_datamodule.Av2DataModule
+
+  data_root: data/sharp_processed
+  train_batch_size: ${batch_size}
+  test_batch_size: ${batch_size}
+  shuffle: True
+  num_workers: 4
+  pin_memory: True
+  dataset:
+    num_historical_steps: 10
+    split_points: [10, 20, 30, 40, 50]
+    radius: 150.0
+    ma: True
+    num_future_steps: 100

@@ -57,7 +57,38 @@ python preprocess.py --data_root=/path/to/data_root -p
 
 For AV1, please switch the extractor import in `preprocess.py`. For nuScenes we provide a standalone extraction script in the `src/datamodules` folder.
 
-## Code and model weights coming soon!
+## Training on Single-Agent Benchmarks
+Train SHARP model using
+```
+python train.py datamodule.pl_module.data_root=/path/to/data_root/sharp_processed/
+```
+
+## Evaluation on Single-Agent Benchmarks
+Evaluate SHARP model using
+```
+python eval.py datamodule.pl_module.data_root=/path/to/data_root/sharp_processed/ checkpoint=/path/to/checkpoint.ckpt
+```
+**AV2 Checkpoint provided in the repository.**
+```
+python eval.py datamodule.pl_module.data_root=/path/to/data_root/sharp_processed/ checkpoint=checkpoints/av2_sa.ckpt
+```
+
+Expected results:
+| MR | minADE1 | minADE6 | minFDE1 | minFDE6 | b-minFDE6 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 0.140 | 1.569 | 0.639 | 3.85 | 1.197 | 1.822 |
+
+
+## Training and Evaluation on AV2 Multi-Agent Benchmark
+**Code included, checkpoint and instructions coming soon.**
+
+## Visualize Results
+Visualize the prediction results using
+```
+python visualize.py
+```
+
+Please update the data_root, chkpt_dir, and av2_raw_data_dir variable in the script.
 
 ## Bibtex
 ```bibtex

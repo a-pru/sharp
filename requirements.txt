@@ -1,0 +1,11 @@
+numpy==1.26.4
+av2==0.3.5
+tqdm
+tensorboard
+hydra-core==1.3.2
+pytorch-lightning==2.4.0
+wandb=0.22.1
+protobuf==6.32.1
+plotly
+timm
+torchmetrics==0.10.2

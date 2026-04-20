@@ -1,0 +1,27 @@
+tag: Sharp
+
+pl_module:
+  _target_: src.model.pl_modules.StreamLightningModule
+  num_grad_frame: 10
+  model:
+    _target_: src.model.sharp.Sharp
+    embed_dim: 128
+    future_steps: 45
+    encoder_depth: 4
+    num_heads: 8
+    mlp_ratio: 4.0
+    qkv_bias: False
+    drop_path: 0.2
+    use_stream_encoder: True
+    use_stream_decoder: True
+    use_target_context: True
+    dual: True
+    biased_interaction: True
+    dm: av1
+    k: 6
+  optim:
+    lr: 1e-3
+    weight_decay: 1e-2
+    min_lr: 1e-5
+    epochs: ${epochs}
+    warmup_ratio: 0.167

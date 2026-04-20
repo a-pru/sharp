@@ -219,17 +219,49 @@ A state-of-the-art, low-latency streaming framework for motion forecasting is in
 
 <section class="section hero">
   <div class="container is-fullhd has-text-centered">
-    <h2 class="title is-3">*Page Under Construction*</h2>
+    <h2 class="title is-3">Motivation and Contributions</h2>
     <div class="columns is-centered has-text-centered">
       <div class="column is-full">
         <ul class="has-text-left" style="display: inline-block; text-align: left; list-style-type: disc; padding-left: 1.5em;">
-          <!-- <li> Coming soon! -->
+          <li>Trajectory prediction is a core component of the autonomous vehicle (AV) control stack, providing hypotheses on the future motions of surrounding agents based on perception outputs.</li>
+          <li>Accurate and robust predictions are critical for safe and efficient motion planning which enables the AV to anticipate and respond to dynamic behaviors in complex traffic scenarios.</li>
+          <li>In real-world driving, traffic scenes are constantly changing. Agents entering the field-of-view of the AV have been observed only briefly, whereas for other agents a more comprehensive motion history is available.</li>
+          <li>Motion forecasting models must therefore be able to leverage heterogeneous historical observations effectively while operating under real-time constraints in continuously evolving scenes.</li>
+          <li><strong>Challenges</strong>
+          <ul style="list-style-type: square; padding-left: 1.5em;">
+            <li>Existing benchmarks consider only fixed-size historical and future windows, while in practice, the historical context can range from a few frames up to several seconds.</li>
+            <li>Methods that rely on extensive contexts typically achieve the most accurate results, but must delay predictions until a sufficient amount of observations are accumulated for newly detected agents.</li>
+            <li>Streaming-based methods are a promising solution, but despite recent advances, their performance often degrades when exposed to heterogeneous observation lengths.</li>
+            <li>To handle the constantly evolving context of real-world traffic scenes, models require the ability to efficiently propagate motion features as long as the agents are visible, a challenge that has not yet been sufficiently addressed.</li>
+          </ul>
+          </li>
+          <div style="font-size: 2rem; margin-top: 1em;">
+            <strong>Key Contributions</strong>
+          </div>
+          <div style="display: flex; align-items: flex-start; font-size: 1.25rem; margin-top: 1em; margin-left: 0.8em;">
+            <span style="margin-right: 0.8em; color: #000000;">&#10141;</span>
+            <strong>We propose SHARP, a novel trajectory forecasting approach, effectively predicting accurate trajectories on various observation lengths in continuously evolving scenes, tackling key challenges in real-world autonomous driving.</strong>
+          </div>
+
+          <div style="display: flex; align-items: flex-start; font-size: 1.25rem; margin-top: 1em; margin-left: 0.8em;">
+            <span style="margin-right: 0.8em; color: #000000;">&#10141;</span>
+            <strong>We introduce a new instance-aware context streaming module and jointly optimize for both long-context and single-chunk prediction using a dual training objective.</strong>
+          </div>
+
+          <div style="display: flex; align-items: flex-start; font-size: 1.25rem; margin-top: 1em; margin-left: 0.8em;">
+            <span style="margin-right: 0.8em; color: #000000;">&#10141;</span>
+            <strong>Our model achieves state-of-the-art performance in streaming inference on the Argoverse 2 multi-agent benchmark, while maintaining minimal latency, highlighting its suitability for real-world deployment.</strong>
+          </div>
+
+          <div style="display: flex; align-items: flex-start; font-size: 1.25rem; margin-top: 1em; margin-left: 0.8em;">
+            <span style="margin-right: 0.8em; color: #000000;">&#10141;</span>
+            <strong>Extensive evaluations on AV2, nuScenes, and AV1 show that our method excels across various datasets providing a lightweight yet effective motion forecasting model.</strong>
+          </div>
         </ul>
       </div>
     </div>
   </div>
 </section>
-
 
 <section class="hero is-small">
 <div class="hero-body">

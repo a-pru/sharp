@@ -1,0 +1,15 @@
+tag: nus
+
+pl_module:
+  _target_: src.datamodules.nus_datamodule.NusDataModule
+
+  data_root: data/sharp_processed
+  train_batch_size: ${batch_size}
+  test_batch_size: ${batch_size}
+  shuffle: True
+  num_workers: 4
+  pin_memory: True
+  dataset:
+    num_historical_steps: 2
+    split_points: [4, 5]
+    radius: 100.0
