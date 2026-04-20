@@ -1,9 +1,9 @@
 # SHARP: Short-Window Streaming for Accurate and Robust Prediction in Motion Forecasting
 
-### Paper
-> **SHARP: Short-Window Streaming for Accurate and Robust Prediction in Motion Forecasting**
-> Alexander Prutsch, Christian Fruhwirth-Reisinger, David Schinagl, Horst Possegger
-> **Graz University of Technology**  
+### [[arXiv]](https://arxiv.org/abs/2603.28091) [[Project Page]](https://a-pru.github.io/sharp/)
+> [**SHARP: Short-Window Streaming for Accurate and Robust Prediction in Motion Forecasting**](https://arxiv.org/abs/2603.28091)  
+> Alexander Prutsch, Christian Fruhwirth-Reisinger, David Schinagl, Horst Possegger  
+> **Graz University of Technology**   
 > **CVPR 2026**
 
 ## Getting Started

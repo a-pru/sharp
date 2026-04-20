@@ -4,20 +4,27 @@
   --primary-hover: #1d4ed8;
   --secondary-color: #64748b;
   --accent-color: #0ea5e9;
-  --text-primary: #1e293b;
-  --text-secondary: #64748b;
-  --text-light: #94a3b8;
+  
+  /* Modernized Darker Tones */
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-light: #64748b;
+  
   --background-primary: #ffffff;
   --background-secondary: #f8fafc;
   --background-accent: #f1f5f9;
   --border-color: #e2e8f0;
+  
+  /* Softer, more modern shadows */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.025);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.05), 0 8px 10px -6px rgb(0 0 0 / 0.025);
+  
   --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   --gradient-accent: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  --gradient-subtle: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+  --gradient-subtle: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  
   --border-radius: 12px;
   --border-radius-lg: 16px;
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -31,40 +38,37 @@ html {
 body {
   font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
   color: var(--text-primary);
-  line-height: 1.6;
+  line-height: 1.7;
   font-size: 16px;
   background-color: var(--background-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-
 /* Modern Button Styles */
 .button {
-  border-radius: var(--border-radius) !important;
   font-weight: 600 !important;
   transition: var(--transition) !important;
-  border: 2px solid transparent !important;
+  border: 1px solid transparent !important;
   position: relative;
   overflow: hidden;
 }
 
 .button.is-dark {
   background: var(--text-primary) !important;
-  border: none !important;
   color: white !important;
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-sm);
 }
 
 .button.is-dark:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-md);
   background: var(--primary-color) !important;
 }
 
 .button.is-dark:active {
   transform: translateY(0);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-sm);
 }
 
 .footer .icon-link {
@@ -86,7 +90,6 @@ body {
   font-variant: small-caps;
 }
 
-
 /* Hero Section Modernization */
 .hero {
   position: relative;
@@ -100,7 +103,7 @@ body {
 }
 
 .hero-body {
-  padding: 4rem 1.5rem;
+  padding: 4.5rem 1.5rem;
 }
 
 .teaser .hero-body {
@@ -112,14 +115,14 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
-
 /* Publication Content Styling */
 .publication-title {
     font-family: 'Inter', sans-serif !important;
     font-weight: 800 !important;
     color: var(--text-primary) !important;
     margin-bottom: 2rem !important;
-    line-height: 1.1 !important;
+    line-height: 1.15 !important;
+    letter-spacing: -0.03em;
 }
 
 .publication-banner {
@@ -149,6 +152,7 @@ body {
     font-family: 'Inter', sans-serif !important;
     font-weight: 500;
     margin-bottom: 1.5rem;
+    color: var(--text-secondary);
 }
 
 .publication-venue {
@@ -188,7 +192,7 @@ body {
     height: 2px;
     bottom: -2px;
     left: 0;
-    background: var(--gradient-accent);
+    background: var(--primary-color);
     transition: var(--transition);
 }
 
@@ -202,7 +206,7 @@ body {
 
 .author-block {
   display: inline-block;
-  margin-right: 0.5rem;
+  margin-right: 0.75rem;
 }
 
 .publication-banner img {
@@ -224,13 +228,14 @@ body {
     padding-bottom: 56.25%;
     overflow: hidden;
     border-radius: var(--border-radius-lg) !important;
-    box-shadow: var(--shadow-xl);
+    box-shadow: var(--shadow-md);
     transition: var(--transition);
+    border: 1px solid var(--border-color);
 }
 
 .publication-video:hover {
     transform: translateY(-4px);
-    box-shadow: var(--shadow-xl);
+    box-shadow: var(--shadow-lg);
 }
 
 .publication-video iframe {
@@ -265,14 +270,14 @@ body {
   font-size: 0;
   background: var(--background-primary);
   border-radius: var(--border-radius-lg);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-sm);
   transition: var(--transition);
   border: 1px solid var(--border-color);
 }
 
 .results-carousel .item:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-md);
 }
 
 .results-carousel .item img,
@@ -316,6 +321,7 @@ body {
   margin-bottom: 2rem !important;
   position: relative;
   padding-bottom: 1rem;
+  letter-spacing: -0.02em;
 }
 
 .title.is-3::after {
@@ -324,21 +330,88 @@ body {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 60px;
+  width: 40px;
   height: 3px;
-  background: var(--gradient-accent);
+  background: var(--primary-color);
   border-radius: 2px;
 }
 
 /* Content Improvements */
-.content.has-text-justified {
-  font-size: 1.1rem;
+.abstract-text {
+  font-size: 1.15rem;
   line-height: 1.8;
   color: var(--text-secondary);
 }
 
 .content.has-text-justified p {
   margin-bottom: 1.5rem;
+}
+
+/* Refined Motivation Section */
+.motivation-section {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+}
+
+.motivation-list {
+  list-style-type: disc;
+  padding-left: 1.5em;
+  margin-bottom: 2rem;
+}
+
+.motivation-list li {
+  margin-bottom: 0.75rem;
+}
+
+.motivation-sublist {
+  list-style-type: square;
+  padding-left: 1.5em;
+  margin-top: 0.5rem;
+}
+
+.motivation-subtitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 2rem 0 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.contribution-bullet {
+  font-size: 1.15rem;
+  margin-top: 1.25rem;
+  padding: 1rem 1.25rem;
+  background: var(--background-primary);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.contribution-bullet:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-color);
+}
+
+.contribution-text {
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+/* Results Section Videos */
+.results-subtitle {
+  margin-bottom: 2rem !important;
+  color: var(--text-secondary);
+  font-weight: 600 !important;
+}
+
+.result-video {
+  width: 100%;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+  background: var(--background-primary);
 }
 
 /* Footer Improvements */
@@ -366,19 +439,20 @@ body {
 
 /* BibTeX Styling */
 pre {
-  background: white;
+  background: var(--background-primary) !important;
   border: 1px solid var(--border-color) !important;
   border-radius: var(--border-radius) !important;
   padding: 1.5rem !important;
-  font-size: 0.9rem !important;
+  font-size: 0.95rem !important;
   overflow-x: auto;
   box-shadow: var(--shadow-sm);
 }
 
 code {
-  background: white;
+  background: transparent !important;
   color: var(--text-primary) !important;
   font-family: 'SF Mono', 'Monaco', 'Cascadia Code', 'Roboto Mono', monospace !important;
+  padding: 0 !important;
 }
 
 /* BibTeX Section Improvements */
@@ -389,12 +463,16 @@ code {
   margin-bottom: 1rem;
 }
 
+.bibtex-header .title::after {
+  display: none; /* remove bottom accent line for this specific header layout */
+}
+
 .copy-bibtex-btn {
   background: var(--primary-color);
   color: white;
   border: none;
-  border-radius: var(--border-radius);
-  padding: 0.75rem 1rem;
+  border-radius: 9999px;
+  padding: 0.6rem 1.25rem;
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
@@ -452,156 +530,10 @@ code {
   visibility: visible;
 }
 
-
-/* More Works Dropdown */
-.more-works-container {
-  position: fixed;
-  top: 2rem;
-  right: 2rem;
-  z-index: 1000;
-}
-
-.more-works-btn {
-  background: var(--background-primary);
-  color: var(--text-primary);
-  border: 2px solid var(--border-color);
-  border-radius: var(--border-radius-lg);
-  padding: 0.75rem 1.25rem;
-  font-weight: 600;
-  font-size: 0.9rem;
-  box-shadow: var(--shadow-md);
-  transition: var(--transition);
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: 'Inter', sans-serif;
-}
-
-.more-works-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
-  background: var(--background-secondary);
-  border-color: var(--primary-color);
-}
-
-.more-works-btn .dropdown-arrow {
-  transition: var(--transition);
-  font-size: 0.8rem;
-}
-
-.more-works-btn.active .dropdown-arrow {
-  transform: rotate(180deg);
-}
-
-.more-works-dropdown {
-  position: absolute;
-  top: calc(100% + 0.5rem);
-  right: 0;
-  width: 400px;
-  max-width: 90vw;
-  background: var(--background-primary);
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius-lg);
-  box-shadow: var(--shadow-xl);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px);
-  transition: var(--transition);
-  max-height: 70vh;
-  overflow-y: auto;
-}
-
-.more-works-dropdown.show {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.dropdown-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.5rem 1.5rem 1rem;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.dropdown-header h4 {
-  margin: 0;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--text-primary);
-}
-
-.close-btn {
-  background: none;
-  border: none;
-  color: var(--text-secondary);
-  cursor: pointer;
-  padding: 0.5rem;
-  border-radius: var(--border-radius);
-  transition: var(--transition);
-}
-
-.close-btn:hover {
-  background: var(--background-accent);
-  color: var(--text-primary);
-}
-
-.works-list {
-  padding: 1rem;
-}
-
-.work-item {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  padding: 1rem;
-  border-radius: var(--border-radius);
-  text-decoration: none;
-  color: inherit;
-  transition: var(--transition);
-  margin-bottom: 0.5rem;
-}
-
-.work-item:hover {
-  background: var(--background-accent);
-  transform: translateX(4px);
-}
-
-.work-info h5 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-.work-info p {
-  margin: 0 0 0.5rem 0;
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  line-height: 1.4;
-}
-
-.work-venue {
-  font-size: 0.8rem;
-  color: var(--text-light);
-  font-style: italic;
-}
-
-.work-item .fas {
-  color: var(--text-light);
-  font-size: 0.9rem;
-  margin-top: 0.2rem;
-  flex-shrink: 0;
-}
-
-
 /* Mobile Responsive Improvements */
 @media screen and (max-width: 768px) {
   .hero-body {
-    padding: 2rem 1rem;
+    padding: 2.5rem 1rem;
   }
   
   .publication-header .hero-body {
@@ -609,7 +541,7 @@ code {
   }
   
   .publication-title {
-    font-size: 2.5rem !important;
+    font-size: 2.25rem !important;
     line-height: 1.2 !important;
     margin-bottom: 1.5rem !important;
   }
@@ -624,24 +556,6 @@ code {
     padding: 0.75rem 1rem !important;
   }
   
-  .more-works-container {
-    bottom: 2rem;
-    right: 1rem;
-    top: auto;
-  }
-  
-  .more-works-btn {
-    padding: 0.6rem 1rem;
-    font-size: 0.8rem;
-  }
-  
-  .more-works-dropdown {
-    width: calc(100vw - 2rem);
-    right: -1rem;
-    bottom: calc(100% + 0.5rem);
-    top: auto;
-  }
-  
   .results-carousel .item {
     margin: 0.5rem;
     padding: 1rem;
@@ -651,38 +565,23 @@ code {
     padding: 1rem;
   }
   
-  .content.has-text-justified {
+  .abstract-text {
     font-size: 1rem;
+  }
+
+  .contribution-bullet {
+    flex-direction: column;
+    padding: 1rem;
   }
 }
 
 @media screen and (max-width: 480px) {
   .publication-title {
-    font-size: 2rem !important;
+    font-size: 1.8rem !important;
   }
   
   .hero-body {
     padding: 1.5rem 0.75rem;
-  }
-  
-  .more-works-container {
-    position: fixed;
-    bottom: 2rem;
-    right: 1rem;
-    z-index: 1000;
-  }
-  
-  .more-works-btn {
-    padding: 0.5rem 0.75rem;
-    font-size: 0.75rem;
-  }
-  
-  .more-works-dropdown {
-    position: absolute;
-    bottom: calc(100% + 0.5rem);
-    right: 0;
-    width: calc(100vw - 2rem);
-    max-width: 90vw;
   }
   
   .link-block {
@@ -711,7 +610,7 @@ code {
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -720,24 +619,18 @@ code {
 }
 
 .hero, .section {
-  animation: fadeInUp 0.6s ease-out;
+  animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Improved focus states for accessibility */
 .button:focus,
-.related-works-btn:focus,
 a:focus {
   outline: 2px solid var(--primary-color);
   outline-offset: 2px;
 }
 
-
 /* Print styles */
 @media print {
-  .more-works-container {
-    display: none;
-  }
-  
   .hero, .section {
     animation: none;
   }
@@ -749,55 +642,26 @@ a:focus {
   }
 }
 
-
-
 /* Existing custom CSS for the content box */
 .content-box {
-  background-color: #f5f5f5;
+  background-color: var(--background-secondary);
   padding: 1.5rem;
-  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
 }
 
 .is-rounded-all {
-  border-radius: 0.5rem;
+  border-radius: var(--border-radius);
 }
-
-/* New CSS for icon placement */
-.has-icon-corner {
-  position: relative; /* Make this the reference for absolute positioning */
-  overflow: hidden; /* Ensures icon doesn't spill if it's too large for radius */
-}
-
-.icon-placeholder {
-  position: absolute; /* Position relative to .has-icon-corner */
-  top: 0;
-  left: 0;
-  width: 40px; /* Adjust icon size as needed */
-  height: 40px; /* Adjust icon size as needed */
-  background-color: #0084FF; /* Example background for the icon */
-  border-top-left-radius: 0.5rem; /* Match parent's corner radius */
-  display: flex; /* To center the placeholder text */
-  align-items: center; /* To center the placeholder text */
-  justify-content: center; /* To center the placeholder text */
-  color: white; /* Text color for the placeholder */
-  font-size: 1.5rem; /* Placeholder icon size */
-  z-index: 1; /* Ensure icon is above other content if overlapping */
-}
-
-/* Adjust padding for content so it doesn't get covered by the icon */
-.has-icon-corner p {
-  padding-top: 1.5rem; /* Push content down if icon needs space */
-  padding-left: 1.5rem; /* Push content right if icon needs space */
-}
-
 
 /* The blinking animation */
 @keyframes blink-animation {
   0% { opacity: 1; }
-  50% { opacity: 0.3; } /* Dim instead of invisible */
+  50% { opacity: 0.4; }
   100% { opacity: 1; }
 }
 
 .blink {
-  animation: blink-animation 1s infinite;
+  animation: blink-animation 1.5s ease-in-out infinite;
 }
