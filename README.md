@@ -1,6 +1,13 @@
+<div align="center">
+
 # SHARP: Short-Window Streaming for Accurate and Robust Prediction in Motion Forecasting
 
-### [[arXiv]](https://arxiv.org/abs/2603.28091) [[Project Page]](https://a-pru.github.io/sharp/)
+[![arXiv](https://img.shields.io/badge/arXiv-2603.16550-b31b1b.svg?style=flat-square)](https://arxiv.org/abs/2603.28091)
+[![Project Page](https://img.shields.io/badge/Project-Page-blue.svg?style=flat-square&logo=googlechrome&logoColor=white)](https://a-pru.github.io/sharp/)
+[![Poster](https://img.shields.io/badge/CVPR%202026-Poster-brightgreen.svg?style=flat-square&logo=adobeacrobatreader&logoColor=white)](docs/static/pdfs/prutsch_sharp_cvpr2026_poster.pdf)
+
+</div>
+
 > [**SHARP: Short-Window Streaming for Accurate and Robust Prediction in Motion Forecasting**](https://arxiv.org/abs/2603.28091)  
 > Alexander Prutsch, Christian Fruhwirth-Reisinger, David Schinagl, Horst Possegger  
 > **Graz University of Technology**   
@@ -78,17 +85,16 @@ Expected results:
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | 0.140 | 1.569 | 0.639 | 3.85 | 1.197 | 1.822 |
 
-
-## Training and Evaluation on AV2 Multi-Agent Benchmark
-**Code included, checkpoint and instructions coming soon.**
-
-## Visualize Results
+## AV2 Single-Agent Visualization
 Visualize the prediction results using
 ```
-python visualize.py
+python visualize_av2_SA.py
 ```
 
 Please update the data_root, chkpt_dir, and av2_raw_data_dir variable in the script.
+
+## Training and Evaluation on AV2 Multi-Agent Benchmark
+**Code included, checkpoint and instructions coming soon.**
 
 ## Bibtex
 ```bibtex
