@@ -13,7 +13,7 @@
 > **Graz University of Technology**   
 > **CVPR 2026**
 
-**This repository provides full training and inference support for the nuScenes, Argoverse 1 (AV1), and Argoverse 2 (AV2) datasets.**  
+**This repository provides full data preprocessing, training and inference support for the nuScenes, Argoverse 1 (AV1), and Argoverse 2 (AV2) datasets.**  
 **It also includes pretrained checkpoints for AV2 single- and multi-agent settings, and visualization tools for AV2.**
 
 ## Getting Started
@@ -64,12 +64,12 @@ Please follow the [official guidelines.](https://www.nuscenes.org/nuscenes#downl
 ### Data Preprocessing
 Preprocess the **Argoverse 2** dataset by executing
 ```
-python preprocess_av.py --data_root=/path/to/data_root -p
+python preprocess_av.py --data_root=/path/to/av2_data_root -p
 ```
 
 Preprocess the **Argoverse 1** dataset by executing
 ```
-python preprocess_av.py --data_root=/path/to/data_root -p --av1
+python preprocess_av.py --data_root=/path/to/av1_data_root -p --av1
 ```
 
 For nuScenes please run the standalone [`nus_extractor.py`](https://github.com/a-pru/sharp/blob/main/src/datamodules/nus_extractor.py) script in the `src/datamodules` folder.
@@ -79,15 +79,18 @@ Train SHARP model on single-agent data using
 ```
 python train.py datamodule.pl_module.data_root=/path/to/data_root/sharp_processed/
 ```
+Select the data root for the corresponding dataset.  
 
 ## Evaluation on Single-Agent Benchmarks
 Evaluate SHARP model using
 ```
 python eval.py datamodule.pl_module.data_root=/path/to/data_root/sharp_processed/ checkpoint=/path/to/checkpoint.ckpt
 ```
+Select the data root for the corresponding dataset. 
+
 **AV2 Single-Agent Checkpoint provided in the repository.**
 ```
-python eval.py datamodule.pl_module.data_root=/path/to/data_root/sharp_processed/ checkpoint=exps/av2_single_agent/checkpoints/av2_sa.ckpt
+python eval.py datamodule.pl_module.data_root=/path/to/av2_data_root/sharp_processed/ checkpoint=exps/av2_single_agent/checkpoints/av2_sa.ckpt
 ```
 
 Expected results:
@@ -108,18 +111,18 @@ Please update the data_root, chkpt_dir, and av2_raw_data_dir variable in the scr
 2. Initialize single-agent model with your checkpoint (see TODO in [`sharp.py`](https://github.com/a-pru/sharp/blob/main/train.py))
 3. Train SHARP model with multi-agent consistency module using
 ```
-python train.py datamodule.pl_module.data_root=/path/to/data_root/sharp_processed/
+python train.py datamodule.pl_module.data_root=/path/to/av2_data_root/sharp_processed/
 ```
 
 ## Evaluation on AV2 Multi-Agent Benchmark
 1. Update config_name to "config_ma" in [`eval.py`](https://github.com/a-pru/sharp/blob/main/eval.py)
 2. Evaluate SHARP model using
 ```
-python eval.py datamodule.pl_module.data_root=/path/to/data_root/sharp_processed/ checkpoint=/path/to/checkpoint.ckpt
+python eval.py datamodule.pl_module.data_root=/path/to/av2_data_root/sharp_processed/ checkpoint=/path/to/checkpoint.ckpt
 ```
 **AV2 Multi-Agent Checkpoint provided in the repository.**
 ```
-python eval.py datamodule.pl_module.data_root=/path/to/data_root/sharp_processed/ checkpoint=exps/av2_multi_agent/checkpoints/av2_ma.ckpt
+python eval.py datamodule.pl_module.data_root=/path/to/av2_data_root/sharp_processed/ checkpoint=exps/av2_multi_agent/checkpoints/av2_ma.ckpt
 ```
 Expected results:
 | AvgMinADE | AvgMinFDE | AvgBrierMinFDE |
