@@ -544,7 +544,7 @@ class Sharp(Sharp_I):
 
         # Preload single-agent checkpoint when finetuning on multi-agent data
         if ma:
-            self.load_from_checkpoint("PLEASE_FILL_IN_YOUR_OWN_CHECKPOINT_PATH_HERE")
+            self.load_from_checkpoint("exps/av2_single_agent/checkpoints/av2_sa.ckpt") #TODO: please update with your own checkpoint path
             grad = []
             for name, param in self.named_parameters():
                 print("grad", name)

@@ -46,8 +46,7 @@ def main():
     split = "val"
     data_root = Path("TODO_UPDATE")
     data_root = Path("/data/datasets/av2/DeMo_processed/")
-    chkpt_dir = "outputs/TODO_UPDATE/checkpoints/"
-    chkpt_dir = "checkpoints/av2_single_agent/checkpoints/" #
+    chkpt_dir = "exps/av2_single_agent/checkpoints/" # Use pretrained model checkpoint for visualization (TODO: update with your own checkpoint path)
     av2_raw_data_dir = Path("TODO_UPDATE") / split   
     av2_raw_data_dir = Path("/data/datasets/av2/motion-forecasting/") / split  
 
