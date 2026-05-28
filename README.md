@@ -38,7 +38,7 @@ pip install -r ./requirements.txt
 ```
 
 ## Dataset Setup
-### Download Exampe Data [Argoverse 2 Motion Forecasting Dataset](https://argoverse.github.io/user-guide/datasets/motion_forecasting.html#download)
+### Download the [Argoverse 2 Motion Forecasting Dataset](https://argoverse.github.io/user-guide/datasets/motion_forecasting.html#download)
 The expected structure of the AV2 data should be:
 ```
 data_root
@@ -56,16 +56,23 @@ data_root
     │   ├── ...
 ```
 
-### Other Datasets
-For AV1 and nuScenes please follow the official guidelines.
+### Download the [Argoverse 1 Motion Forecasting Dataset](https://www.argoverse.org/av1.html#forecasting-link)
+
+### nuScenes
+Please follow the [official guidelines.](https://www.nuscenes.org/nuscenes#download)
 
 ### Data Preprocessing
-Preprocess the Argoverse 2 dataset by executing
+Preprocess the **Argoverse 2** dataset by executing
 ```
-python preprocess.py --data_root=/path/to/data_root -p
+python preprocess_av.py --data_root=/path/to/data_root -p
 ```
 
-For AV1, please switch the extractor import in `preprocess.py`. For nuScenes we provide a standalone extraction script in the `src/datamodules` folder.
+Preprocess the **Argoverse 1** dataset by executing
+```
+python preprocess_av.py --data_root=/path/to/data_root -p --av1
+```
+
+For nuScenes please run the standalone [`nus_extractor.py`](https://github.com/a-pru/sharp/blob/main/src/datamodules/nus_extractor.py) script in the `src/datamodules` folder.
 
 ## Training on Single-Agent Benchmarks
 Train SHARP model on single-agent data using
@@ -105,7 +112,7 @@ python train.py datamodule.pl_module.data_root=/path/to/data_root/sharp_processe
 ```
 
 ## Evaluation on AV2 Multi-Agent Benchmark
-1. Update config_name to "config_ma" in [`evak.py`](https://github.com/a-pru/sharp/blob/main/eval.py)
+1. Update config_name to "config_ma" in [`eval.py`](https://github.com/a-pru/sharp/blob/main/eval.py)
 2. Evaluate SHARP model using
 ```
 python eval.py datamodule.pl_module.data_root=/path/to/data_root/sharp_processed/ checkpoint=/path/to/checkpoint.ckpt
