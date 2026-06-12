@@ -164,6 +164,7 @@ def main():
 
             agent_data = []
             present = helper.get_annotations_for_sample(sample_token)
+            skip_scene = False # only used in experimental settings where horizons are not 2 and 6 seconds
             for agent_token in all_instance_tokens:
                 agent_data.append({"type": "none"})
 
@@ -225,11 +226,28 @@ def main():
                     agent_data[-1][pafu + "_padding_mask"] = torch.from_numpy(t_mask)
                     agent_data[-1][pafu + "_xy"] = torch.from_numpy(xy_global)
                     agent_data[-1][pafu + "_heading"] = torch.from_numpy(yaw_global)
+                
+                last_agent = agent_data[-1]
 
-                if agent_data[-1]["history_xy"].shape[0] != h_horizon*2+1 or agent_data[-1]["future_xy"].shape[0] != f_horizon*2:
-                    assert False
-                if torch.all(agent_data[-1]["history_padding_mask"] == 1) or torch.all(agent_data[-1]["future_padding_mask"] == 1):
-                    assert False
+                if last_agent["history_xy"].shape[0] != h_horizon*2+1 or last_agent["future_xy"].shape[0] != f_horizon*2:
+                    raise AssertionError("Horizon shape mismatch.")
+
+                is_target_agent = (agent_token == instance_token)
+                is_standard_horizon = (h_horizon == 2 and f_horizon == 6)
+
+                if is_target_agent and not is_standard_horizon:
+                    if (last_agent["history_padding_mask"] == 1).any() or (last_agent["future_padding_mask"] == 1).any():
+                        skip_scene = True 
+                        break
+
+                if torch.all(last_agent["history_padding_mask"] == 1) or torch.all(last_agent["future_padding_mask"] == 1):
+                    if is_target_agent and is_standard_horizon:
+                        raise AssertionError("Target agent under standard horizon is fully padded.")
+                    else:
+                        agent_data.pop()
+            
+            if skip_scene: 
+                continue
             
             data_record = {}
             data_record['scenario_id'] = "{}_{}".format(instance_token, sample_token)
@@ -241,9 +259,30 @@ def main():
             data_record["x_valid_mask"] = ~(data_record["x_padding_mask"].bool())
             data_record["agent_idx"] = 0    
             
+            if plot:
+                plt.figure()
+                for i in range(data_record["x_positions"].shape[0]):
+                    color = np.random.uniform(0, 1, size=(3,))
+                    ap_hs = data_record["x_positions"][i, :5]
+                    ap_fs = data_record["x_positions"][i, 5:]
+                    valid_hs = ap_hs[data_record["x_valid_mask"][i, :5].cpu()]
+                    valid_fs = ap_fs[data_record["x_valid_mask"][i, 5:].cpu()]
+                    valid_hangles = data_record["x_angles"][i, :5].cpu()[data_record["x_valid_mask"][i, :5].cpu()] 
+                    valid_fangles = data_record["x_angles"][i, 5:].cpu()[data_record["x_valid_mask"][i, 5:].cpu()] 
+                    plt.plot(valid_hs[:, 0], valid_hs[:, 1], zorder=1, color=color)
+                    plt.plot(valid_fs[:, 0], valid_fs[:, 1], zorder=1, color=color, alpha=0.5, linewidth=10)
+                    print(i)
+                    print(valid_hs)
+                    print(valid_fs)
+                    print(data_record["x_valid_mask"][i])
+                    plt.quiver(*valid_hs.reshape(-1,2).T, np.cos(valid_hangles.reshape(-1)), np.sin(valid_hangles.reshape(-1)))
+                    plt.quiver(*valid_fs.reshape(-1,2).T, np.cos(valid_fangles.reshape(-1)), np.sin(valid_fangles.reshape(-1)))
+                plt.show()
+
             out_split = "train" if split == "train" or split == "train_val" else "val"
-            out_dir = "/TODO/nuscenes/sharp_nus_processed_/{}/".format(out_split)
-            if not os.path.exists(out_dir): os.makedirs(out_dir)
+            out_dir = "{}/sharp_nus_processed/{}/".format(DATAROOT, out_split)
+            if not os.path.exists(out_dir):
+                os.makedirs(out_dir)
             torch.save(data_record, "{}/{}_{}.pt".format(out_dir, instance_token, sample_token))
             stored += 1
         print("stored {} samples".format(stored))
