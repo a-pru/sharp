@@ -16,6 +16,8 @@
 **This repository provides full data preprocessing, training and inference support for the nuScenes, Argoverse 1 (AV1), and Argoverse 2 (AV2) datasets.**  
 **It also includes pretrained checkpoints for AV2 single- and multi-agent settings, and visualization tools for AV2.**
 
+**[HetroD Challenge 2026](https://hetroddata.github.io/HetroD/challenge.html):** An adaptation of SHARP placed 3rd ([Technical Report](https://a-pru.github.io/files/prutsch_hetrod_eccv2026drivex.pdf)).
+
 ## Getting Started
 
 ### Create and Activate Virtual Environment
